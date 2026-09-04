@@ -1,0 +1,23 @@
+{
+  "version": "iwsdk.scene.v1",
+  "units": "meters",
+  "metadata": {
+    "iwsdk-replit-template/note": "This template still builds its objects procedurally in src/index.ts, so `nodes` is intentionally empty. The document exists for two reasons: iwsdk.config.json requires a `scene` entry (which is what lets dev.emulator.activation be \"always\" for the Replit preview), and EnvironmentSystem only applies DomeGradient/IBLGradient on the level-root entity — so the sky and image-based lighting below have to come from a loaded level. Add entries to `nodes` if you move to the declarative native scene workflow."
+  },
+  "components": {
+    "com.iwsdk.components.DomeGradient": {
+      "sky": [0.2423, 0.6172, 0.8308, 1],
+      "equator": [0.6584, 0.7084, 0.7913, 1],
+      "ground": [0.807, 0.7758, 0.7454, 1],
+      "intensity": 1
+    },
+    "com.iwsdk.components.IBLGradient": {
+      "sky": [0.6902, 0.749, 0.7843, 1],
+      "equator": [0.6584, 0.7084, 0.7913, 1],
+      "ground": [0.807, 0.7758, 0.7454, 1],
+      "intensity": 1
+    }
+  },
+  "resources": {},
+  "nodes": []
+}

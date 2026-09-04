@@ -1,0 +1,25 @@
+{
+  "$schema": "./node_modules/@iwsdk/core/dist/schemas/iwsdk-project.v1.schema.json",
+  "version": "iwsdk.project.v1",
+  "scene": "./public/scenes/main.iwsdk.scene.json",
+  "world": {
+    "xr": {
+      "mode": "vr",
+      "offer": "always",
+      "features": { "handTracking": true, "layers": true }
+    },
+    "features": {
+      "locomotion": { "useWorker": true },
+      "grabbing": true,
+      "physics": false,
+      "sceneUnderstanding": false,
+      "environmentRaycast": false
+    }
+  },
+  "dev": {
+    "emulator": {
+      "device": "metaQuest3",
+      "activation": "always"
+    }
+  }
+}
