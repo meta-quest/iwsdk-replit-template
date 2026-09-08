@@ -1,5 +1,7 @@
 # IWSDK Starter Template (Replit)
 
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+
 A ready-to-run WebXR starter template using the [Immersive Web SDK](https://developers.meta.com/horizon/documentation/web/webxr-iwsdk-overview) (IWSDK), pre-configured for the Replit environment.
 
 This is the **remix build** for the Meta-device WebXR path. The skill version of
@@ -138,3 +140,11 @@ npx iwsdk reference api --input-json '{"name":"World.create"}'
 
 - The preview pane shows a white screen — this is expected since WebXR/Three.js needs a GPU for 3D rendering. The headless managed browser handles the runtime.
 - All Three.js classes should be imported from `@iwsdk/core`, not from `three` directly.
+
+## License
+
+Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for the
+full text.
+
+Note that IWSDK itself is MIT-licensed; this template's Apache-2.0 terms cover
+the template's own source, not its dependencies.
