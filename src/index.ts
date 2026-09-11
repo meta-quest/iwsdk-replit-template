@@ -21,8 +21,8 @@
  *
  * A WebXR app that is missing any of these feels broken in a headset. The
  * reference scene below wires up every one; if you replace the scene, carry the
- * blocks over. Full rationale and recipes live in the `hz-iwsdk-webxr` skill at
- * `skills/hz-iwsdk-webxr/references/building-blocks.md`.
+ * blocks over. `replit.md` and `README.md` carry the same list; the bundled
+ * skills under `.agents/skills/` cover the individual techniques in depth.
  *
  *  1. CONTROLLER RAY / POINTER — `ControllerRaySystem` (src/ray.ts) forces both
  *     controller rays permanently visible and adds hover/press highlighting on

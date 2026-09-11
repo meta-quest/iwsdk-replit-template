@@ -4,10 +4,10 @@
 
 A ready-to-run WebXR starter template using the [Immersive Web SDK](https://developers.meta.com/horizon/documentation/web/webxr-iwsdk-overview) (IWSDK), pre-configured for the Replit environment.
 
-This is the **remix build** for the Meta-device WebXR path. The skill version of
-the same material lives at `skills/hz-iwsdk-webxr/` in this workspace — remix
-this repo when you want a working scene in one click, use the skill when your
-agent is building from scratch.
+This is the **remix build** for the Meta-device WebXR path: remix it when you
+want a working scene in one click, rather than scaffolding from scratch. IWSDK
+task guides ship with it under `.agents/skills/` and travel with any copy — see
+[AGENTS.md](AGENTS.md) for what each one covers.
 
 ## What's Included
 

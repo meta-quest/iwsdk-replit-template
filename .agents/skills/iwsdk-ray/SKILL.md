@@ -1,7 +1,6 @@
 ---
 name: iwsdk-ray
 description: Ray-based interactions in the WebXR scene — click objects, press UI buttons, or distance-grab with DistanceGrabbable. Use when the user wants to point at and interact with something at a distance, click a UI button, or test ray-based selection.
-argument-hint: <target> [action]
 ---
 
 # Ray Interaction

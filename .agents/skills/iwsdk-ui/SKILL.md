@@ -1,7 +1,6 @@
 ---
 name: iwsdk-ui
 description: Develop and iterate on IWSDK PanelUI components. Use when the user wants to create, modify, debug, or improve UI panels in their IWSDK application. Covers UIKITML editing, full-screen preview with ScreenSpace, and visual verification.
-argument-hint: [panel-name or description of changes]
 ---
 
 # UI Panel Development
@@ -56,19 +55,26 @@ This is where the user's request drives the work. Edit the `.uikitml` file in `u
 ### Key facts about UIKITML
 
 - UIKITML is a **subset of HTML**, not all syntax is supported.
-- **Before writing markup**, use `mcp__iwsdk-reference__search_code` to query for supported UIKITML element types and CSS properties. Search for things like "uikitml interpret container text" or specific element types you need.
+- **Before writing markup**, look up the supported UIKITML element types and CSS
+  properties: `npx iwsdk reference search --input-json '{"query":"uikitml interpret container text"}'`.
+  Search for the specific element types you need.
 - Supported selectors: `#id` and `.class` (via PanelDocument's `querySelector`).
 - Units are in **centimeters** (e.g., `width: 50` = 50cm). World space uses meters. `100cm = 1m`.
-- The source of truth is the `.uikitml` file. Changes are auto-compiled by the vite plugin and hot-reloaded.
-- The compiled `.json` file in `public/ui/` should **never be modified directly**, but can be read for quick debugging to inspect the compiled element tree, class definitions, and properties.
+- The `.uikitml` file is the source of truth. Since IWSDK 0.5 it is loaded at
+  runtime straight from `public/ui/` — there is no compile step and no generated
+  `.json`. Saving the file hot-reloads it.
+- On IWSDK 0.4.x and earlier the file was compiled to a `.json` alongside it;
+  if you are on that version, edit the `.uikitml` and treat the `.json` as
+  generated output.
 
 ### Verify changes
 
 After each edit to the `.uikitml` file:
 
-1. Wait a moment for the vite plugin to compile and hot-reload.
+1. Wait a moment for the dev server to hot-reload.
 2. Take a `browser_screenshot` to visually verify the change.
-3. If needed, read the compiled JSON (`public/ui/<name>.json`) to debug layout issues or inspect computed properties.
+3. If needed, re-read the `.uikitml` to check the element tree and class
+   definitions against what you see rendered.
 
 Repeat the edit-screenshot cycle as needed.
 
@@ -94,7 +100,8 @@ Take a final `browser_screenshot` to confirm the panel is back to its normal sta
 
 ## Notes
 
-- **Always edit `.uikitml`, never the compiled `.json`** — the JSON is auto-generated and will be overwritten.
+- **Always edit `.uikitml`.** On versions that still emit a `.json`, that file
+  is generated output and will be overwritten.
 - **ScreenSpace behavior in VR:** When entering VR, ScreenSpace automatically detaches the panel from the camera and it returns to world-space positioning. This is handled by the ScreenSpaceUISystem.
 - **PanelDocument for element access:** Use `getElementById(id)` or `querySelector(selector)` on the PanelDocument to access UI elements programmatically in systems. Elements can be named with `.name = "id"` to make them discoverable in the scene hierarchy.
 - **ScreenSpace uses CSS strings, not numbers** — always pass string values like `"400px"`, `"100vw"`, `"20px"`.

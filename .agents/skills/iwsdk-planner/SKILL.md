@@ -1186,7 +1186,7 @@ my-iwsdk-project/
 │   ├── gltf/                 # 3D models
 │   ├── audio/                # Audio files
 │   ├── glxf/                 # Generated scene files
-│   └── ui/                   # Compiled UI configs
+│   └── ui/                   # UIKitML sources, loaded at runtime
 ├── ui/
 │   └── *.uikitml             # UI markup source
 ├── metaspatial/              # Meta Spatial Editor project

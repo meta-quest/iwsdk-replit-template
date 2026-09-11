@@ -1,7 +1,6 @@
 ---
 name: iwsdk-grab
 description: Grab an object in the WebXR scene using emulated controllers. Use when the user wants to pick up, move, or test grabbing an object. Supports OneHandGrabbable and TwoHandsGrabbable components which use proximity-based grip (squeeze button), not trigger.
-argument-hint: <object-name> [destination]
 ---
 
 # Grab Object

@@ -37,21 +37,21 @@ The header comment in `src/index.ts` repeats this list next to the code. If you
 replace the scene's models and logic, re-attach these systems and components to
 the new entities.
 
-## Where the skills live
+## Bundled skills
 
-This template is referenced by a skills pack that routes "build an app for Meta"
-requests to the right build path. In this workspace it sits at `skills/`,
-alongside this repo:
+Task-specific IWSDK guides ship inside this project at `.agents/skills/` and come
+with any remix: `iwsdk-planner` (architecture), `iwsdk-ui` (UIKitML panels),
+`iwsdk-ray` (pointing and clicking), `iwsdk-grab` (direct grab), `iwsdk-physics`,
+`iwsdk-debug` (frame-by-frame inspection), and `iwsdk-code-review`. Read the
+relevant one before starting that kind of work. They are plain markdown with no
+tool-specific syntax, so read them directly if your tooling does not pick them up
+on its own. `AGENTS.md` lists what each covers.
 
-- `skills/meta-device-router/` — entry point; picks a build path
-- `skills/hz-iwsdk-webxr/` — the skill form of this template (WebXR for Quest),
-  including `references/building-blocks.md`, the long-form version of the list
-  above
-- `skills/hz-react-native-expo/` — React Native / Expo 2D panel apps for Quest
-- `skills/create-webapp/` — web apps for Meta Ray-Ban Display glasses
-
-If you are working from a remix of this repo alone, you do not need the skills —
-this file and `README.md` carry the essentials.
+Separately, a routing pack — `meta-device-router` plus per-path skills for React
+Native/Expo, WebXR, and Ray-Ban Display web apps — decides *which* kind of Meta
+app to build. It lives outside this repo and is not needed here: if you are in a
+remix of this template, the WebXR path has already been chosen, and this file
+plus `README.md` carry the essentials.
 
 ## Tech Stack
 - **Framework**: @iwsdk/core with elics ECS
