@@ -20,9 +20,10 @@ all four into whatever gets built, unless the user explicitly asks to drop one.*
    `VisibleOnIntersection` hides the ray until it hits something, which users
    read as "this app has no pointer".
 2. **Full controller input mapping** — `src/input.ts` (`ControllerInputSystem`).
-   A handler for trigger, thumbstick and A/B/X/Y, plus a HUD panel
-   (`public/ui/input-hud.uikitml`) mirroring live input values (grip included,
-   even though proximity grab rather than this system consumes it).
+   A handler for trigger, grip, thumbstick and A/B/X/Y, plus a HUD panel
+   (`public/ui/input-hud.uikitml`) mirroring live input values. Left grip
+   toggles the soundtrack; grip also drives proximity grab in IWSDK itself, so
+   the two layer rather than conflict.
 3. **Background music + spatial audio** — `src/music.ts`
    (`BackgroundMusicSystem`) loops `public/audio/ambient-loop.wav`
    non-positionally, so it stays at a constant level wherever the player walks,

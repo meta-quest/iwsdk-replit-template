@@ -28,7 +28,7 @@ to the code that implements it.
 | Block | Where it lives | What it does |
 | ----- | -------------- | ------------ |
 | **Controller ray / pointer** | `src/ray.ts` | Forces both controller rays permanently visible and highlights whatever they hover or press. IWSDK's default only shows the ray on intersection, which reads as "no pointer". |
-| **Full controller input mapping** | `src/input.ts` | A handler for trigger, grip, thumbstick and A/B/X/Y, plus a HUD panel mirroring live input state. |
+| **Full controller input mapping** | `src/input.ts` | A handler for trigger, grip, thumbstick and A/B/X/Y, plus a HUD panel mirroring live input state. Left grip toggles the soundtrack. |
 | **Background music + spatial audio** | `src/music.ts`, `public/audio/` | A looping non-positional soundtrack that ducks out when the headset loses focus, plus positional chime SFX on the robot and cube so sound also has a direction. |
 | **Grabbable objects** | `src/index.ts` | The cube is `OneHandGrabbable` (grip up close), the plant is `DistanceGrabbable` (pull it in with the ray). |
 

@@ -32,6 +32,8 @@ import {
   Vector3,
 } from "@iwsdk/core";
 
+import { BackgroundMusic } from "./music.js";
+
 /** Tag for the directly grabbable demo cube that face buttons manipulate. */
 export const DemoCube = createComponent("DemoCube", {});
 
@@ -58,14 +60,14 @@ const SPIN_RATE = 3.0; // radians/sec at full thumbstick deflection
  * | X (left)             | cycle the cube's colour                       |
  * | Y (left)             | reset colour, scale, position and spin        |
  * | Trigger (either)     | play the chime SFX on the cube                |
+ * | Grip / squeeze (left)| toggle the background music                   |
  * | Thumbstick (right)   | spin the cube on its Y axis                   |
  * | Thumbstick click     | stop the spin                                 |
  *
  * Note that IWSDK also consumes some of these: the trigger drives ray select
  * and distance-grab, grip drives proximity grab, and the locomotion feature
  * reads the thumbsticks (left glides, right snap-turns). The handlers here
- * layer on top rather than replacing that. Grip has no handler of its own —
- * proximity grab is its behaviour — but the HUD still mirrors its state.
+ * layer on top rather than replacing that.
  *
  * The HUD panel mirrors live button / trigger / grip / thumbstick values so you
  * can confirm input is arriving even when a handler does nothing visible.
@@ -76,6 +78,7 @@ export class ControllerInputSystem extends createSystem({
     required: [PanelUI, PanelDocument],
     where: [eq(PanelUI, "config", "./ui/input-hud.uikitml")],
   },
+  music: { required: [BackgroundMusic] },
 }) {
   private hudEls: Record<string, UIKit.Text> = {};
   private hudCache: Record<string, string> = {};
@@ -137,6 +140,7 @@ export class ControllerInputSystem extends createSystem({
     const right = this.input.xr.gamepads.right;
 
     this.applyCubeActions(left, right, delta);
+    this.applyMusicToggle(left);
 
     if (time - this.lastHud >= HUD_INTERVAL) {
       this.lastHud = time;
@@ -201,6 +205,20 @@ export class ControllerInputSystem extends createSystem({
     // Let the grab system own the transform while the cube is held.
     if (this.cubeSpin !== 0 && !cubeEntity.hasComponent(Grabbed)) {
       mesh.rotation.y += this.cubeSpin * delta;
+    }
+  }
+
+  /** Grip / squeeze on the left controller mutes and unmutes the soundtrack. */
+  private applyMusicToggle(left: StatefulGamepad | undefined) {
+    if (!left?.getButtonDown(InputComponent.Squeeze)) {
+      return;
+    }
+    for (const entity of this.queries.music.entities) {
+      if (AudioUtils.isPlaying(entity)) {
+        AudioUtils.pause(entity, 0.3);
+      } else {
+        AudioUtils.play(entity, 0.6);
+      }
     }
   }
 
