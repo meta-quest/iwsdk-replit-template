@@ -29,7 +29,7 @@ to the code that implements it.
 | ----- | -------------- | ------------ |
 | **Controller ray / pointer** | `src/ray.ts` | Forces both controller rays permanently visible and highlights whatever they hover or press. IWSDK's default only shows the ray on intersection, which reads as "no pointer". |
 | **Full controller input mapping** | `src/input.ts` | A handler for trigger, grip, thumbstick and A/B/X/Y, plus a HUD panel mirroring live input state. |
-| **Spatial audio** | `src/index.ts`, `public/audio/` | Positional chime SFX on the robot and cube, so sound has a direction in the scene. |
+| **Background music + spatial audio** | `src/music.ts`, `public/audio/` | A looping non-positional soundtrack that ducks out when the headset loses focus, plus positional chime SFX on the robot and cube so sound also has a direction. |
 | **Grabbable objects** | `src/index.ts` | The cube is `OneHandGrabbable` (grip up close), the plant is `DistanceGrabbable` (pull it in with the ray). |
 
 If you remix this template, keep all four unless you're explicitly asked to drop
@@ -103,6 +103,7 @@ src/
   index.ts        Entry point — world setup, assets, entity creation
   ray.ts          Controller ray visibility + hover/press feedback
   input.ts        Full controller input mapping + HUD mirroring
+  music.ts        Background music component + session handling
   robot.ts        Robot component + system (ECS example)
   panel.ts        Panel system for spatial UI interaction
 iwsdk.config.json Project authority — scene, world options, dev.emulator
@@ -113,8 +114,10 @@ public/
   scenes/
     main.iwsdk.scene.json  Sky + image-based lighting for the level root
   gltf/           3D models (GLTF)
-  audio/          chime.mp3 (positional SFX)
+  audio/          chime.mp3 (positional SFX) + ambient-loop.wav (music)
   textures/       Image assets
+scripts/
+  make-ambient-loop.py  Regenerates the ambient soundtrack
 ```
 
 ## Useful Commands

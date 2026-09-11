@@ -23,9 +23,13 @@ all four into whatever gets built, unless the user explicitly asks to drop one.*
    A handler for trigger, thumbstick and A/B/X/Y, plus a HUD panel
    (`public/ui/input-hud.uikitml`) mirroring live input values (grip included,
    even though proximity grab rather than this system consumes it).
-3. **Spatial audio** — the robot and cube carry positional `AudioSource` chimes
-   (`public/audio/chime.mp3`) that fire on interaction, so sound has a direction
-   in the scene.
+3. **Background music + spatial audio** — `src/music.ts`
+   (`BackgroundMusicSystem`) loops `public/audio/ambient-loop.wav`
+   non-positionally, so it stays at a constant level wherever the player walks,
+   and ducks out when the headset loses focus. Alongside it, the robot and cube
+   carry positional `AudioSource` chimes (`public/audio/chime.mp3`) that fire on
+   interaction, so sound also has a direction in the scene. A silent app is one
+   of the most common things to lose in a rewrite — keep both halves.
 4. **Grabbable objects** — the cube uses `OneHandGrabbable`, the plant uses
    `DistanceGrabbable`. At least one grabbable entity should always exist.
 
