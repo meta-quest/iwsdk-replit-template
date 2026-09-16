@@ -21,8 +21,8 @@
  *
  * A WebXR app that is missing any of these feels broken in a headset. The
  * reference scene below wires up every one; if you replace the scene, carry the
- * blocks over. Full rationale and recipes live in the `hz-iwsdk-webxr` skill at
- * `skills/hz-iwsdk-webxr/references/building-blocks.md`.
+ * blocks over. `replit.md` and `README.md` carry the same list; the bundled
+ * skills under `.agents/skills/` cover the individual techniques in depth.
  *
  *  1. CONTROLLER RAY / POINTER — `ControllerRaySystem` (src/ray.ts) forces both
  *     controller rays permanently visible and adds hover/press highlighting on
@@ -32,8 +32,10 @@
  *     handles trigger, grip, thumbstick and A/B/X/Y, and mirrors live state onto
  *     the input HUD panel.
  *
- *  3. SPATIAL AUDIO — the robot and the cube carry positional `AudioSource`
- *     chimes that fire on interaction, so sound has a direction in the scene.
+ *  3. BACKGROUND MUSIC + SPATIAL AUDIO — `BackgroundMusicSystem` (src/music.ts)
+ *     loops `public/audio/ambient-loop.wav` non-positionally, while the robot
+ *     and the cube carry positional `AudioSource` chimes that fire on
+ *     interaction, so sound has a direction in the scene.
  *
  *  4. GRABBABLE OBJECTS — the cube uses `OneHandGrabbable` (grab it directly),
  *     the plant uses `DistanceGrabbable` (pull it in with the ray).
@@ -79,9 +81,16 @@ import { ControllerInputSystem, CUBE_COLORS, DemoCube } from "./input.js";
 
 import { ControllerRaySystem } from "./ray.js";
 
+import { BackgroundMusic, BackgroundMusicSystem } from "./music.js";
+
 const assets: AssetManifest = {
   chimeSound: {
     url: "./audio/chime.mp3",
+    type: AssetType.Audio,
+    priority: "background",
+  },
+  ambientMusic: {
+    url: "./audio/ambient-loop.wav",
     type: AssetType.Audio,
     priority: "background",
   },
@@ -188,6 +197,19 @@ World.create(document.getElementById("scene-container") as HTMLDivElement, {
       playbackMode: PlaybackMode.FadeRestart,
     });
 
+  // BUILDING BLOCK 3 — background music: non-positional, looping, plays from
+  // the listener so it stays at a constant level wherever the player walks.
+  world
+    .createTransformEntity()
+    .addComponent(BackgroundMusic)
+    .addComponent(AudioSource, {
+      src: "./audio/ambient-loop.wav",
+      positional: false,
+      loop: true,
+      autoplay: true,
+      volume: 0.35,
+    });
+
   // PanelUI carries only `config` since IWSDK 0.5 — the old `maxWidth`/`maxHeight`
   // fit is gone. UIKitML units are centimetres, so `.panel-container { width: 50 }`
   // renders 0.5 m wide intrinsically; the entity scale below brings it to the
@@ -236,5 +258,6 @@ World.create(document.getElementById("scene-container") as HTMLDivElement, {
     .registerSystem(PanelSystem)
     .registerSystem(RobotSystem)
     .registerSystem(ControllerRaySystem)
+    .registerSystem(BackgroundMusicSystem)
     .registerSystem(ControllerInputSystem);
 });

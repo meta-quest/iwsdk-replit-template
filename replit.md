@@ -20,12 +20,17 @@ all four into whatever gets built, unless the user explicitly asks to drop one.*
    `VisibleOnIntersection` hides the ray until it hits something, which users
    read as "this app has no pointer".
 2. **Full controller input mapping** — `src/input.ts` (`ControllerInputSystem`).
-   A handler for trigger, thumbstick and A/B/X/Y, plus a HUD panel
-   (`public/ui/input-hud.uikitml`) mirroring live input values (grip included,
-   even though proximity grab rather than this system consumes it).
-3. **Spatial audio** — the robot and cube carry positional `AudioSource` chimes
-   (`public/audio/chime.mp3`) that fire on interaction, so sound has a direction
-   in the scene.
+   A handler for trigger, grip, thumbstick and A/B/X/Y, plus a HUD panel
+   (`public/ui/input-hud.uikitml`) mirroring live input values. Left grip
+   toggles the soundtrack; grip also drives proximity grab in IWSDK itself, so
+   the two layer rather than conflict.
+3. **Background music + spatial audio** — `src/music.ts`
+   (`BackgroundMusicSystem`) loops `public/audio/ambient-loop.wav`
+   non-positionally, so it stays at a constant level wherever the player walks,
+   and ducks out when the headset loses focus. Alongside it, the robot and cube
+   carry positional `AudioSource` chimes (`public/audio/chime.mp3`) that fire on
+   interaction, so sound also has a direction in the scene. A silent app is one
+   of the most common things to lose in a rewrite — keep both halves.
 4. **Grabbable objects** — the cube uses `OneHandGrabbable`, the plant uses
    `DistanceGrabbable`. At least one grabbable entity should always exist.
 
@@ -33,21 +38,21 @@ The header comment in `src/index.ts` repeats this list next to the code. If you
 replace the scene's models and logic, re-attach these systems and components to
 the new entities.
 
-## Where the skills live
+## Bundled skills
 
-This template is referenced by a skills pack that routes "build an app for Meta"
-requests to the right build path. In this workspace it sits at `skills/`,
-alongside this repo:
+Task-specific IWSDK guides ship inside this project at `.agents/skills/` and come
+with any remix: `iwsdk-planner` (architecture), `iwsdk-ui` (UIKitML panels),
+`iwsdk-ray` (pointing and clicking), `iwsdk-grab` (direct grab), `iwsdk-physics`,
+`iwsdk-debug` (frame-by-frame inspection), and `iwsdk-code-review`. Read the
+relevant one before starting that kind of work. They are plain markdown with no
+tool-specific syntax, so read them directly if your tooling does not pick them up
+on its own. `AGENTS.md` lists what each covers.
 
-- `skills/meta-device-router/` — entry point; picks a build path
-- `skills/hz-iwsdk-webxr/` — the skill form of this template (WebXR for Quest),
-  including `references/building-blocks.md`, the long-form version of the list
-  above
-- `skills/hz-react-native-expo/` — React Native / Expo 2D panel apps for Quest
-- `skills/create-webapp/` — web apps for Meta Ray-Ban Display glasses
-
-If you are working from a remix of this repo alone, you do not need the skills —
-this file and `README.md` carry the essentials.
+Separately, a routing pack — `meta-device-router` plus per-path skills for React
+Native/Expo, WebXR, and Ray-Ban Display web apps — decides *which* kind of Meta
+app to build. It lives outside this repo and is not needed here: if you are in a
+remix of this template, the WebXR path has already been chosen, and this file
+plus `README.md` carry the essentials.
 
 ## Tech Stack
 - **Framework**: @iwsdk/core with elics ECS

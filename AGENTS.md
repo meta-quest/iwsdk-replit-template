@@ -2,6 +2,26 @@
 
 This file provides project context for AI coding assistants working on IWSDK (Immersive Web SDK) projects.
 
+## Bundled skills
+
+Task-specific guides ship with this project under `.agents/skills/`. Read the
+relevant one before starting that kind of work — they carry the detail this file
+summarises.
+
+| Skill | Read it when |
+| ----- | ------------ |
+| `iwsdk-planner` | Planning a feature, designing systems/components, or reviewing architecture |
+| `iwsdk-ui` | Creating or debugging UIKitML panels |
+| `iwsdk-ray` | Ray-based interaction — clicking, pointing, distance grab |
+| `iwsdk-grab` | Direct grabbing with `OneHandGrabbable` / `TwoHandsGrabbable` |
+| `iwsdk-physics` | Rigid bodies, collision shapes, forces |
+| `iwsdk-debug` | Continuous behaviour that is too fast to observe — physics, animation, game loops |
+| `iwsdk-code-review` | Reviewing IWSDK application code |
+
+Some tools discover these automatically; others do not. If yours does not, read
+`.agents/skills/<name>/SKILL.md` directly — they are plain markdown with no
+tool-specific syntax.
+
 ## Project Structure
 
 ```
