@@ -13,7 +13,7 @@ This is where the user's request drives the work. Edit the `.uikitml` file in `u
 
 - UIKITML is a **subset of HTML**, not all syntax is supported.
 - **Before writing markup**, look up the supported UIKITML element types and CSS
-  properties: `npx iwsdk reference search --input-json '{"query":"uikitml interpret container text"}'`.
+  properties: `npx @iwsdk/cli reference search --input-json '{"query":"uikitml interpret container text"}'`.
   Search for the specific element types you need.
 - Supported selectors: `#id` and `.class` (via PanelDocument's `querySelector`).
 - Units are in **centimeters** (e.g., `width: 50` = 50cm). World space uses meters. `100cm = 1m`.

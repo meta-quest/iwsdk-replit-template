@@ -284,7 +284,7 @@ entity.addComponent(ScreenSpace, { width: '400px', top: '20px' });
 
 Semantic code search and API lookup for IWSDK, elics ECS, and dependencies.
 
-Starter projects install `@iwsdk/reference` by default so these tools are available locally, but they only become usable after reference warmup. Run `npx iwsdk reference warmup` once to download the pinned model and corpus. Set `IWSDK_REFERENCE_ASSETS_BASE_URL` too when you are using an internal or unpublished corpus payload instead of the published `@iwsdk/reference-assets` package. The pinned model file URLs themselves are baked into the SDK, so warmup still requires access to those public URLs unless the shared cache has already been pre-warmed.
+Starter projects install `@iwsdk/reference` by default so these tools are available locally, but they only become usable after reference warmup. Run `npx @iwsdk/cli reference warmup` once to download the pinned model and corpus. Set `IWSDK_REFERENCE_ASSETS_BASE_URL` too when you are using an internal or unpublished corpus payload instead of the published `@iwsdk/reference-assets` package. The pinned model file URLs themselves are baked into the SDK, so warmup still requires access to those public URLs unless the shared cache has already been pre-warmed.
 
 | Tool                   | Purpose                      | When to Use                                              |
 | ---------------------- | ---------------------------- | -------------------------------------------------------- |
@@ -365,11 +365,11 @@ WebXR emulator control for testing without a headset.
 
 **Connection check — always call first:**
 
-Call `xr_get_session_status` before doing anything else. In environments with deferred MCP schemas, hydrate the `mcp__iwsdk-runtime__*` tools first or use `npx iwsdk xr status` for the same check. If this returns a successful connection, the dev server is ALREADY running. Do NOT start another one.
+Call `xr_get_session_status` before doing anything else. In environments with deferred MCP schemas, hydrate the `mcp__iwsdk-runtime__*` tools first or use `npx @iwsdk/cli xr status` for the same check. If this returns a successful connection, the dev server is ALREADY running. Do NOT start another one.
 
 **Troubleshooting:**
 
-- Dev server not running → Start with `npm run dev` (CLI-managed) or `npx iwsdk dev up` for the explicit runtime-first entrypoint
+- Dev server not running → Start with `npm run dev` (CLI-managed) or `npx @iwsdk/cli dev up` for the explicit runtime-first entrypoint
 - Browser tab in background → Bring to foreground (Chrome throttles background tabs)
 - Session not active → Use `xr_accept_session`
 
@@ -644,12 +644,12 @@ npx tsc --noEmit
 
 Type errors will prevent systems from initializing properly, but may not show errors in the browser console. Always type check after writing code and before testing.
 
-**BEFORE starting a dev server, ALWAYS check if one is already running** by calling `xr_get_session_status`. In environments with deferred MCP schemas, hydrate the `mcp__iwsdk-runtime__*` tools first or use `npx iwsdk xr status`. If this returns a successful connection, the dev server is already running. Do NOT start another one.
+**BEFORE starting a dev server, ALWAYS check if one is already running** by calling `xr_get_session_status`. In environments with deferred MCP schemas, hydrate the `mcp__iwsdk-runtime__*` tools first or use `npx @iwsdk/cli xr status`. If this returns a successful connection, the dev server is already running. Do NOT start another one.
 
 1. **Type check first:** `npx tsc --noEmit` - fix any errors before proceeding
-2. Check IWER status first: `xr_get_session_status` (or `npx iwsdk xr status` if MCP schemas are still deferred)
+2. Check IWER status first: `xr_get_session_status` (or `npx @iwsdk/cli xr status` if MCP schemas are still deferred)
 3. If not connected, start the CLI-managed dev server: `npm run dev`
-4. If you need the resolved runtime URL or port, run `npx iwsdk dev status`
+4. If you need the resolved runtime URL or port, run `npx @iwsdk/cli dev status`
 5. Enter XR: `xr_accept_session`
 6. Test interactions with controller tools
 

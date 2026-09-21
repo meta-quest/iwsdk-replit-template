@@ -103,49 +103,49 @@ npx @iwsdk/create@latest my-app --yes --mode vr
 Key flags: `--mode vr|ar`, `--no-xr` (browser-only 3D), `--physics`, `--locomotion`, `--grabbing`, `--scene-understanding`, `--environment-raycast`.
 
 ## Reference System
-Run `npx iwsdk reference warmup` once after first install.
+Run `npx @iwsdk/cli reference warmup` once after first install.
 ```bash
-npx iwsdk reference search --input-json '{"query":"grabbable object","limit":5}'
-npx iwsdk reference api --input-json '{"name":"World.create"}'
-npx iwsdk reference examples --input-json '{"api_name":"DistanceGrabbable"}'
-npx iwsdk reference components --input-json '{}'
-npx iwsdk reference systems --input-json '{}'
+npx @iwsdk/cli reference search --input-json '{"query":"grabbable object","limit":5}'
+npx @iwsdk/cli reference api --input-json '{"name":"World.create"}'
+npx @iwsdk/cli reference examples --input-json '{"api_name":"DistanceGrabbable"}'
+npx @iwsdk/cli reference components --input-json '{}'
+npx @iwsdk/cli reference systems --input-json '{}'
 ```
 
 ## Runtime Debugging (dev server must be running)
 
 ### Scene & ECS
 ```bash
-npx iwsdk scene hierarchy
-npx iwsdk scene transform --input-json '{"uuid":"<uuid>"}'
-npx iwsdk ecs find --input-json '{"components":["DistanceGrabbable"]}'
-npx iwsdk ecs query --input-json '{"entityIndex":3}'
-npx iwsdk ecs set-component --input-json '{"entityIndex":3,"componentId":"Transform","field":"position","value":[2,1,-1.8]}'
-npx iwsdk ecs pause
-npx iwsdk ecs step --input-json '{"frames":1}'
-npx iwsdk ecs resume
-npx iwsdk ecs snapshot --input-json '{"label":"snap1"}'
-npx iwsdk ecs diff --input-json '{"from":"snap1","to":"snap2"}'
+npx @iwsdk/cli scene hierarchy
+npx @iwsdk/cli scene transform --input-json '{"uuid":"<uuid>"}'
+npx @iwsdk/cli ecs find --input-json '{"components":["DistanceGrabbable"]}'
+npx @iwsdk/cli ecs query --input-json '{"entityIndex":3}'
+npx @iwsdk/cli ecs set-component --input-json '{"entityIndex":3,"componentId":"Transform","field":"position","value":[2,1,-1.8]}'
+npx @iwsdk/cli ecs pause
+npx @iwsdk/cli ecs step --input-json '{"frames":1}'
+npx @iwsdk/cli ecs resume
+npx @iwsdk/cli ecs snapshot --input-json '{"label":"snap1"}'
+npx @iwsdk/cli ecs diff --input-json '{"from":"snap1","to":"snap2"}'
 ```
 
 ### XR Emulation
 Valid devices: `"headset"`, `"controller-right"`, `"controller-left"`, `"hand-right"`, `"hand-left"`
 
 ```bash
-npx iwsdk xr enter
-npx iwsdk xr set-transform --input-json '{"device":"headset","position":{"x":0,"y":1.6,"z":-2}}'
-npx iwsdk xr look-at --input-json '{"device":"headset","target":{"x":0,"y":0.9,"z":0}}'
-npx iwsdk xr animate-to --input-json '{"device":"headset","position":{"x":0,"y":1.5,"z":0},"duration":0.5}'
-npx iwsdk xr select --input-json '{"device":"controller-right"}'
+npx @iwsdk/cli xr enter
+npx @iwsdk/cli xr set-transform --input-json '{"device":"headset","position":{"x":0,"y":1.6,"z":-2}}'
+npx @iwsdk/cli xr look-at --input-json '{"device":"headset","target":{"x":0,"y":0.9,"z":0}}'
+npx @iwsdk/cli xr animate-to --input-json '{"device":"headset","position":{"x":0,"y":1.5,"z":0},"duration":0.5}'
+npx @iwsdk/cli xr select --input-json '{"device":"controller-right"}'
 ```
 
 `set-device-state` uses nested JSON (different from other commands):
 ```bash
-npx iwsdk xr set-device-state --input-json '{"controllers":{"right":{"position":{"x":0.2,"y":1.1,"z":0.3}}}}'
+npx @iwsdk/cli xr set-device-state --input-json '{"controllers":{"right":{"position":{"x":0.2,"y":1.1,"z":0.3}}}}'
 ```
 
 ### Recovery
 If XR commands time out or errors flood the terminal:
-1. `npx iwsdk browser reload`
+1. `npx @iwsdk/cli browser reload`
 2. If that times out, restart the dev server
-3. `npx iwsdk xr enter`
+3. `npx @iwsdk/cli xr enter`

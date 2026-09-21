@@ -41,7 +41,7 @@ one. `replit.md` tells your coding agent the same thing.
 2. **Run the workflow** — click "Run" or use `npm run dev:runtime`. The Vite dev server starts on port 5000.
 3. **Warm up the reference system** (optional, one-time):
    ```bash
-   npx iwsdk reference warmup
+   npx @iwsdk/cli reference warmup
    ```
 4. **Start building** — edit files in `src/`, add UI in `public/ui/`, and drop 3D models in `public/gltf/`.
 
@@ -90,10 +90,10 @@ The headless XR emulator lets an agent drive the scene from the terminal — ent
 a session, move the headset and controllers, and click things:
 
 ```bash
-npx iwsdk dev up
-npx iwsdk xr enter
-npx iwsdk xr select --input-json '{"device":"controller-right"}'
-npx iwsdk scene hierarchy
+npx @iwsdk/cli dev up
+npx @iwsdk/cli xr enter
+npx @iwsdk/cli xr select --input-json '{"device":"controller-right"}'
+npx @iwsdk/cli scene hierarchy
 ```
 
 ## Project Structure
@@ -124,19 +124,19 @@ scripts/
 
 ```bash
 # Scene & ECS debugging (requires dev server running)
-npx iwsdk scene hierarchy
-npx iwsdk ecs find --input-json '{"components":["Robot"]}'
-npx iwsdk ecs pause
-npx iwsdk ecs resume
+npx @iwsdk/cli scene hierarchy
+npx @iwsdk/cli ecs find --input-json '{"components":["Robot"]}'
+npx @iwsdk/cli ecs pause
+npx @iwsdk/cli ecs resume
 
 # XR emulation
-npx iwsdk xr enter
-npx iwsdk xr set-transform --input-json '{"device":"headset","position":{"x":0,"y":1.6,"z":-2}}'
-npx iwsdk xr select --input-json '{"device":"controller-right"}'
+npx @iwsdk/cli xr enter
+npx @iwsdk/cli xr set-transform --input-json '{"device":"headset","position":{"x":0,"y":1.6,"z":-2}}'
+npx @iwsdk/cli xr select --input-json '{"device":"controller-right"}'
 
 # Reference system (after warmup)
-npx iwsdk reference search --input-json '{"query":"grabbable object","limit":5}'
-npx iwsdk reference api --input-json '{"name":"World.create"}'
+npx @iwsdk/cli reference search --input-json '{"query":"grabbable object","limit":5}'
+npx @iwsdk/cli reference api --input-json '{"name":"World.create"}'
 ```
 
 ## Notes
