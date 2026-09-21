@@ -116,7 +116,7 @@ npx @iwsdk/cli reference systems --input-json '{}'
 
 ### Scene & ECS
 ```bash
-npx @iwsdk/cli scene hierarchy
+npx @iwsdk/cli scene runtime-hierarchy
 npx @iwsdk/cli scene transform --input-json '{"uuid":"<uuid>"}'
 npx @iwsdk/cli ecs find --input-json '{"components":["DistanceGrabbable"]}'
 npx @iwsdk/cli ecs query --input-json '{"entityIndex":3}'

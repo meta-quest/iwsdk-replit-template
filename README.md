@@ -93,7 +93,7 @@ a session, move the headset and controllers, and click things:
 npx @iwsdk/cli dev up
 npx @iwsdk/cli xr enter
 npx @iwsdk/cli xr select --input-json '{"device":"controller-right"}'
-npx @iwsdk/cli scene hierarchy
+npx @iwsdk/cli scene runtime-hierarchy
 ```
 
 ## Project Structure
@@ -124,7 +124,7 @@ scripts/
 
 ```bash
 # Scene & ECS debugging (requires dev server running)
-npx @iwsdk/cli scene hierarchy
+npx @iwsdk/cli scene runtime-hierarchy
 npx @iwsdk/cli ecs find --input-json '{"components":["Robot"]}'
 npx @iwsdk/cli ecs pause
 npx @iwsdk/cli ecs resume
