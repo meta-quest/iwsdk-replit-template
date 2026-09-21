@@ -79,7 +79,7 @@ adb reverse tcp:5000 tcp:5000        # headset :5000 -> laptop :5000
 With `adb reverse` in place, `http://localhost:5000` in the Quest browser is a
 secure context (browsers treat `localhost` as trusted), so XR works and Vite's
 hot reload repaints the headset as you save. The headset must be in developer
-mode with USB debugging on; `npx -y metavr device list` or `adb devices`
+mode with USB debugging on; `npx -y @meta-quest/metavr device list` or `adb devices`
 confirms it is visible.
 
 Deploy for sharing and for the final demo; tether for the edit loop.

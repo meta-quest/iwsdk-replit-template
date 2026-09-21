@@ -644,14 +644,14 @@ entity.addComponent(PhysicsShape, {
 **CRITICAL: Always run type check BEFORE testing!**
 
 ```bash
-npx tsc --noEmit
+npm run typecheck
 ```
 
 Type errors will prevent systems from initializing properly, but may not show errors in the browser console. Always type check after writing code and before testing.
 
 **BEFORE starting a dev server, ALWAYS check if one is already running** by calling `xr_get_session_status`. In environments with deferred MCP schemas, hydrate the `mcp__iwsdk-runtime__*` tools first or use `npx @iwsdk/cli xr status`. If this returns a successful connection, the dev server is already running. Do NOT start another one.
 
-1. **Type check first:** `npx tsc --noEmit` - fix any errors before proceeding
+1. **Type check first:** `npm run typecheck` - fix any errors before proceeding
 2. Check IWER status first: `xr_get_session_status` (or `npx @iwsdk/cli xr status` if MCP schemas are still deferred)
 3. If not connected, start the CLI-managed dev server: `npm run dev`
 4. If you need the resolved runtime URL or port, run `npx @iwsdk/cli dev status`
@@ -663,7 +663,7 @@ Type errors will prevent systems from initializing properly, but may not show er
 If something isn't appearing or working but no errors show in console:
 
 1. **Don't use level filter for console logs** — call `browser_get_console_logs` with just `count`, not `level` filter, as you may miss important errors
-2. **Run type check** — `npx tsc --noEmit` often reveals issues that don't appear as runtime errors
+2. **Run type check** — `npm run typecheck` often reveals issues that don't appear as runtime errors
 3. **Check scene hierarchy** — use `scene_get_hierarchy` to verify entities exist and find entity indices
 4. **Reload and check logs immediately** — some errors only appear during initialization
 5. **Inspect ECS state** — use `ecs_find_entities` to check if entities have expected components, then `ecs_query_entity` to read their values
