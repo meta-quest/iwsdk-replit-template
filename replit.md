@@ -1,7 +1,7 @@
 # IWSDK Starter Template
 
 ## Overview
-WebXR starter template using IWSDK v0.5.3 with an ECS architecture on Three.js, targeting Meta Quest 3 and similar headsets. Pre-configured for the Replit headless environment.
+WebXR starter template using IWSDK v1.0.1 with an ECS architecture on Three.js, targeting Meta Quest 3 and similar headsets. Pre-configured for the Replit headless environment.
 
 This repo is the **remix build** for the Meta-device WebXR path: a user forks it
 and asks an agent to turn the reference scene into their idea. It is not a blank
